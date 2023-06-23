@@ -2,13 +2,13 @@ from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel, Field, validator
-from utils.models import PydanticObjectId
+# from utils.models import PydanticObjectId
 
 
 class Notification(BaseModel):
     """ Notification model """
-    id: Optional[PydanticObjectId] = Field(alias="_id")
-    user_id: PydanticObjectId
+    # id: Optional[PydanticObjectId] = Field(alias="_id")
+    # user_id: PydanticObjectId
     text: str
     status: str = Field(default="unread")
     timestamp: datetime = Field(default=datetime.utcnow())

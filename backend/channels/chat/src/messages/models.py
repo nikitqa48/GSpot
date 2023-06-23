@@ -2,18 +2,18 @@ from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel, Field, validator
-from utils.models import PydanticObjectId
+# from utils.models import PydanticObjectId
 
 
 class Message(BaseModel):
     """ Message model """
-    id: Optional[PydanticObjectId] = Field(alias="_id")
-    sender_id: PydanticObjectId
-    room_id: PydanticObjectId
-    message_text: str
+    # id: Optional[PydanticObjectId] = Field(alias="_id")
+    text: str
+    room: str
     created_at: datetime = Field(default=datetime.utcnow())
+    updated_at: datetime = Field(default=datetime.utcnow())
 
-    @validator('message_text')
+    @validator('text')
     def validate_message_text(cls, v):
         if not v.strip():
             raise ValueError("Message mustn't be empty.")

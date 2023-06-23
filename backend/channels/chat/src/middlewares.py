@@ -2,20 +2,18 @@ from fastapi import (
     Query,
     WebSocketException,
     status,
+    Depends
 )
 import aiohttp
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+users = [1, 2]
 
 
-async def get_token(token):
-    print(token)
-    return token
+def get_token(token: str = Depends(oauth2_scheme)):
+    return True
 
-
-# async def get_token(
-#     token: str | None = Query(default=None),
-# ):
-#     print(token)
-#     return True
     # async with aiohttp.ClientSession() as session:
     #     async with session.post('http://users/token', json={'token': token}) as resp:
     #         if resp.status != 201:

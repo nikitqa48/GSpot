@@ -31,6 +31,5 @@ class WebSocketRouter:
     async def handle(self, request):
         for route in self.routes:
             if route.path == request.path:
-                await route.endpoint(request)
-            # else:
-            #     await websocket.send_text('no such router')
+                response = await route.endpoint(request)
+                return response

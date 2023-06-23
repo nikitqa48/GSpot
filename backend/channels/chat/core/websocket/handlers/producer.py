@@ -11,7 +11,8 @@ class ProducerHandler:
         from main import chat
         try:
             request = WebsocketRequest.parse_obj(data)
-            await chat.handle(request)
+            return await chat.handle(request)
         except ValidationError as e:
             errors = {f'{x["loc"]}': f'{x["msg"]}' for x in e.errors()}
-            await self.websocket.send_json(errors)
+            # await self.websocket.send_json(errors)
+
